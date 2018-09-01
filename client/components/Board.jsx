@@ -12,7 +12,7 @@ class Board extends React.Component {
             selectedCells: [], //state with every cell selected
             correctCells: [] //if it's correct, hold in here
         }
-
+        console.log(this.state.board)
         this.checkPairs = this
             .checkPairs
             .bind(this);
@@ -38,13 +38,25 @@ class Board extends React.Component {
             if (selectedCells[0].value == cell.value) {
                 // celebrate below
                 console.log('match found&#$Q*()&*(@$&$*(@&');
+                console.log(correctCells.length);
 
+                if (correctCells.length == 14) {
+                    alert('you won, what a beast!! New board loading...')
+
+                    setTimeout(() => {
+                        this.setState({
+                            board: createBoard(4), selectedCells: [], //resetting state to original
+                            correctCells: []
+                        })
+                    }, 2600)
+                }
                 // Add selected cards the correct state array and leave their visibility
                 this.setState({
                     correctCells: correctCells.concat([selectedCells[0], cell]),
                     selectedCells: []
                 });
             } else {
+
                 // no match, slight timeout so you can read what the second card is manually set
                 // visible to false and clear state
                 this.setState({

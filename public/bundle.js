@@ -18348,7 +18348,7 @@ var Board = function (_React$Component) {
             selectedCells: [], //state with every cell selected
             correctCells: [] //if it's correct, hold in here
         };
-
+        console.log(_this.state.board);
         _this.checkPairs = _this.checkPairs.bind(_this);
 
         return _this;
@@ -18380,13 +18380,25 @@ var Board = function (_React$Component) {
                 if (selectedCells[0].value == cell.value) {
                     // celebrate below
                     console.log('match found&#$Q*()&*(@$&$*(@&');
+                    console.log(correctCells.length);
 
+                    if (correctCells.length == 14) {
+                        alert('you won, what a beast!! New board loading...');
+
+                        setTimeout(function () {
+                            _this2.setState({
+                                board: (0, _createBoard2.default)(4), selectedCells: [], //resetting state to original
+                                correctCells: []
+                            });
+                        }, 2600);
+                    }
                     // Add selected cards the correct state array and leave their visibility
                     this.setState({
                         correctCells: correctCells.concat([selectedCells[0], cell]),
                         selectedCells: []
                     });
                 } else {
+
                     // no match, slight timeout so you can read what the second card is manually set
                     // visible to false and clear state
                     this.setState({
@@ -18486,38 +18498,41 @@ exports.default = Cell;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 function shuffle(array) {
-    var length = array.length;
-    var shuffled = [].concat(_toConsumableArray(array));
+  var counter = array.length;
 
-    for (var i = length; i > 0; i--) {
-        var random = Math.floor(Math.random() * length);
+  // While there are elements in the array
+  while (counter > 0) {
+    // Pick a random index
+    var index = Math.floor(Math.random() * counter);
 
-        shuffled[i] = array[random];
-        shuffled[random] = array[i];
-    }
+    // Decrease counter by 1
+    counter--;
 
-    return shuffled;
+    // And swap the last element with it
+    var temp = array[counter];
+    array[counter] = array[index];
+    array[index] = temp;
+  }
+
+  return array;
 }
 
 var createCell = function createCell(id, value) {
-    return { id: id, value: value, isVisible: false, image: '/images/' + value + '.png' };
+  return { id: id, value: value, isVisible: false, image: '/images/' + value + '.png' };
 };
 
 var createBoard = function createBoard(size) {
-    var id = 0;
-    var values = shuffle(['Mouse', 'Mouse', 'Rabbit', 'Rabbit', 'Guinea Pig', 'Guinea Pig', 'Dog', 'Dog', 'Cat', 'Cat', 'Rat', 'Rat', 'Parrot', 'Parrot', 'Duck', 'Duck']);
+  var id = 0;
+  var values = shuffle(['Mouse', 'Mouse', 'Rabbit', 'Rabbit', 'Guinea Pig', 'Guinea Pig', 'Dog', 'Dog', 'Cat', 'Cat', 'Rat', 'Rat', 'Parrot', 'Parrot', 'Duck', 'Duck']);
 
+  return Array(size).fill(0).map(function () {
     return Array(size).fill(0).map(function () {
-        return Array(size).fill(0).map(function () {
-            return createCell(++id, values.pop());
-        });
+      return createCell(++id, values.pop());
     });
+  });
 };
 
 exports.default = createBoard;
