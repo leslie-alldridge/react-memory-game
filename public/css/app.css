@@ -1,0 +1,37 @@
+.board {
+  background-color: pink;
+  margin-left: 25%;
+}
+
+.cell {
+  border: 1px solid black;
+}
+
+img {
+  max-width: 100px;
+}
+
+p {
+  color: black;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 500;
+}
+
+.section {
+  background-image: url('/images/stretchy.jpg');
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+#head {
+  color: whitesmoke;
+  -webkit-text-stroke: 1px black;
+  background-color: rgba(255,255,255, 0.3);
+  max-width: 661px;
+  margin-left: 25%;
+  border-radius: 8px;
+  padding-bottom: 3px;
+}
