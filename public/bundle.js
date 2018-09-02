@@ -18290,7 +18290,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App(props) {
     return _react2.default.createElement(
         'div',
-        { className: 'section' },
+        { id: 'boardSection', className: 'section' },
         _react2.default.createElement(
             'h1',
             { id: 'head', className: 'has-text-centered title is-1' },
@@ -18427,7 +18427,7 @@ var Board = function (_React$Component) {
                         width: width,
                         height: width
                     },
-                    className: 'column board has-text-centered' },
+                    id: 'board', className: 'column board has-text-centered' },
                 board.map(function (row, rid) {
                     // render a row (of cells) on the board
                     return _react2.default.createElement(

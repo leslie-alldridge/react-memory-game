@@ -80,7 +80,7 @@ class Board extends React.Component {
             width: width,
             height: width
         }}
-            className="column board has-text-centered">
+            id ="board"className="column board has-text-centered">
 
             {board.map((row, rid) => {
                 // render a row (of cells) on the board
